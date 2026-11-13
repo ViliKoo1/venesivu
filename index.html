@@ -1,32 +1,61 @@
-    <!DOCTYPE html>
-    <head>
-        <link rel="stylesheet" href="style.css">
-    </head>
 
-    <body>
-        <header>
-            <h1>Venekauppa OY</h1>
-            <p> Tervetuloa Venekauppa OY:n verkkosivuille. Täältä löydät itsellesi unelmiesi veneen.</p>
-        </header>
-        <main>
-            <section class="venemyynti">
-                <div class="vene1">
-                    <img src="images/vene1_1.jpg" alt="Kuva veneen etupuolelta trailerissa">
-                    <h2>Terhi 475 Twin C</h2>
-                    <h3>Hinta: 11 900 €</h3>
-                    <p>Katso tarkemmat tiedot <a href="boat1.html">tästä</a></p>
-                </div>
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venekauppa Oy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-                <div class="vene2">
-                    <img src="images/vene3.png">
-                    <h2>Nordic Wave 320</h2>
-                    <h3>Hinta: 4 700 €  </h3>
-                </div>
-                <div class="vene3">
-                    <img src="images/vene2.png">
-                    <h2>Baltic Wind 29</h2>
-                    <h3>Hinta: 7 900 €</h3> 
-                </div>
-            </section>
-        </main>
-    </body>
+<body>
+    <header>
+        <h1>Venekauppa Oy</h1>
+        <p>
+            Tervetuloa Venekauppa Oy:n verkkosivuille.
+            Täältä löydät itsellesi unelmiesi veneen.
+        </p>
+    </header>
+
+    <main>
+        <section class="venemyynti">
+            <h2>Myynnissä olevat veneet</h2>
+
+            <div class="veneet">
+                <article class="venekortti">
+                    <img src="images/vene1_1.jpg"
+                         alt="Terhi 475 Twin C trailerissa">
+
+                    <div class="korttisisalto">
+                        <h3>Terhi 475 Twin C</h3>
+                        <p class="hinta">11 900 €</p>
+                        <a href="boat1.html" class="painike">
+                            Katso tarkemmat tiedot
+                        </a>
+                    </div>
+                </article>
+
+                <article class="venekortti">
+                    <img src="images/vene3.png"
+                         alt="Nordic Wave 320 -vene">
+
+                    <div class="korttisisalto">
+                        <h3>Nordic Wave 320</h3>
+                        <p class="hinta">4 700 €</p>
+                    </div>
+                </article>
+
+                <article class="venekortti">
+                    <img src="images/vene2.png"
+                         alt="Baltic Wind 29 -vene">
+
+                    <div class="korttisisalto">
+                        <h3>Baltic Wind 29</h3>
+                        <p class="hinta">7 900 €</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
