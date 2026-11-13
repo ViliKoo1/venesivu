@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yhteystiedot - VeneKauppa Oy</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>VeneKauppa Oy</h1>
+
+      <nav>
+        <a href="index.html">Etusivu</a>
+        <a href="contact.html">Ota yhteyttä</a>
+      </nav>
+    </header>
+
+    <main class="contact-container">
+      <h2>Ota yhteyttä</h2>
+      <p>
+        Onko sinulla kysyttävää veneistämme? Lähetä meille viesti, niin palaamme
+        asiaan mahdollisimman pian.
+      </p>
+
+      <form action="https://httpbin.org/post" method="POST">
+        <div class="form-group">
+          <label for="name">Nimi *</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Etunimi Sukunimi"
+            required
+            minlength="2"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Sähköpostiosoite *</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="esimerkki@email.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Puhelinnumero</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="040 123 4567"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="boat">Vene</label>
+          <select id="boat" name="boat">
+            <option value="">Valitse vene</option>
+            <option value="Vene 1">Vene 1</option>
+            <option value="Vene 2">Vene 2</option>
+            <option value="Vene 3">Vene 3</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Viesti *</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            placeholder="Kirjoita viestisi tähän..."
+            required
+            minlength="5"
+          ></textarea>
+        </div>
+
+        <button type="submit">Lähetä viesti</button>
+      </form>
+    </main>
+    <script>
+      // Tarkistetaan, onko URL-osoitteessa veneen tunniste.
+      const params = new URLSearchParams(window.location.search);
+      const selectedBoat = params.get("boat");
+
+      // Valitaan oikea vene automaattisesti.
+      if (selectedBoat) {
+        document.getElementById("boat").value = selectedBoat;
+      }
+    </script>
+  </body>
+</html>
