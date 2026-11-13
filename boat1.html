@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terhi 475 Twin C – Venekauppa Oy</title>
+    <style>
+        :root {
+            --primary: #0f2942;
+            --primary-light: #1c446b;
+            --accent: #0077b6;
+            --accent-hover: #005f92;
+            --bg-light: #f4f7f9;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigaatio */
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+
+        .back-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Pääsisältö */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 5%;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .boat-showcase {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        /* Kuvagalleria */
+        .gallery-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .main-image-container {
+            width: 100%;
+            height: 380px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #e2e8f0;
+            position: relative;
+        }
+
+        .main-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.25s ease;
+        }
+
+        .thumbnails {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        .thumb {
+            height: 90px;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            opacity: 0.7;
+            transition: all 0.2s;
+        }
+
+        .thumb:hover {
+            opacity: 1;
+        }
+
+        .thumb.active {
+            border-color: var(--accent);
+            opacity: 1;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Tiedot ja speksit */
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+            width: fit-content;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .description {
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            background: var(--bg-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border);
+            padding: 0.85rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-light);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 5%;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsiivisuus mobiililaitteille */
+        @media (max-width: 850px) {
+            .boat-showcase {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+            .main-image-container {
+                height: 260px;
+            }
+            .thumb {
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">⚓ Venekauppa Oy</a>
+        <a href="index.html" class="back-link">← Takaisin venevalikoimaan</a>
+    </header>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Etusivu</a> / <a href="index.html#veneet">Myytävät veneet</a> / Terhi 475 Twin C
+        </div>
+
+        <article class="boat-showcase">
+            <!-- Kuvagalleria (3 kuvaa) -->
+            <div class="gallery-section">
+                <div class="main-image-container">
+                    <img id="mainImage" src="IMG_20261005_124850~2.jpg" alt="Terhi 475 Twin C pääkuva">
+                </div>
+                
+                <div class="thumbnails">
+                    <div class="thumb active" onclick="changeImage(this, 'IMG_20261005_124850~2.jpg')">
+                        <img src="IMG_20261005_124850~2.jpg" alt="Terhi 475 Twin C takaa">
+                    </div>
+                    <div class="thumb" onclick="changeImage(this, 'IMG_20261005_124833~2.jpg')">
+                        <img src="IMG_20261005_124833~2.jpg" alt="Ohjaamo">
+                    </div>
+                    <div class="thumb" onclick="changeImage(this, 'IMG_20261024_145138~2.jpg')">
+                        <img src="IMG_20261024_145138~2.jpg" alt="Avotila">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Veneen tiedot -->
+            <div class="info-section">
+                <div>
+                    <span class="badge">Heti toimitukseen</span>
+                    <h1>Terhi 475 Twin C</h1>
+                    <p class="subtitle">Luotettava lujitemuovinen moottorivene (Rek. tunnus: P75921)</p>
+                    <div class="price">11 900 €</div>
+
+                    <p class="description">
+                        Terhi 475 Twin C on erinomainen ja vakaa avomallinen moottorivene monipuoliseen retkeilyyn ja yhteysveneajoon. Varustettu taloudellisella ja luotettavalla Honda 50 hv -perämoottorilla. Ensimmäinen käyttöönotto 14.4.2020.
+                    </p>
+
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Valmistusvuosi</span>
+                            <span class="spec-value">2017</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Moottori</span>
+                            <span class="spec-value">Honda 50 hv</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Pituus / Leveys</span>
+                            <span class="spec-value">4,75 m / 1,85 m</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Henkilömäärä</span>
+                            <span class="spec-value">5 henkilöä</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Runkomateriaali</span>
+                            <span class="spec-value">Lujitemuovi</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Rekisteritunnus</span>
+                            <span class="spec-value">P75921</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-group">
+                    <!-- Linkki ryhmäläisten toteuttamaan yhteydenottolomakkeeseen -->
+                    <a href="contact.html?boat=Vene%201" class="btn-primary">✉️ Kysy tästä veneestä</a>
+                    <a href="index.html" class="btn-secondary">Katso muut myytävät veneet</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p><strong>Venekauppa Oy</strong> | Satamatie 12, 00140 Helsinki | Puh. 09 123 4567 | myynti@venekauppa.fi</p>
+    </footer>
+
+    <script>
+        // Kuvagallerian vaihto
+        function changeImage(thumbnailElement, imageUrl) {
+            const mainImg = document.getElementById('mainImage');
+            mainImg.style.opacity = '0.4';
+            
+            setTimeout(() => {
+                mainImg.src = imageUrl;
+                mainImg.style.opacity = '1';
+            }, 120);
+
+            document.querySelectorAll('.thumb').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            thumbnailElement.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
